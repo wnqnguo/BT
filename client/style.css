@@ -1,0 +1,24 @@
+body{
+	width:1200px;
+}
+#top{
+	position:relative;
+	left:45%;
+}
+#start{
+	width:100px;
+	height:30px;
+	background-color:#66CCFF;
+	color:white;
+	border:none;
+	border-radius:5px;
+}
+#message-box{
+	position:relative;
+	top:20px;
+	left:73%;
+	border: solid black 1px;
+	width:200px;
+	height:200px;
+	text-align:
+}

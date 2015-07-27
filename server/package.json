@@ -1,0 +1,12 @@
+{
+  "name": "codingChalleng",
+  "version": "0.0.0",
+  "description": "BitTorrent Coding Challenge",
+  "main": "server.js",
+  "author": "Wenqian Guo",
+  "license": "MIT",
+  "dependencies": {
+    "express": "~4.6.0",
+    "body-parser": "~1.4.3"
+  }
+}
