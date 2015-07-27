@@ -5,7 +5,19 @@ The box appears to be a new box with a new message everytime it reaches to the e
 of the window*/
 $(document).ready(function(){
 	//fetch a new message on page load 
-    getMsg();
+    $.ajax({
+ 		type: "GET",
+  		url:"/helo",
+  			success: function(data) {
+  				console.log(data);
+   		 		$('#initial').html(data.message);
+	  		}
+	});
+	$('#start').click(function(){
+		getMsg();
+		move('#message-box',3500);	
+
+	});
 	function getMsg(){
 		$.ajax({
  		type: "GET",
@@ -25,14 +37,11 @@ $(document).ready(function(){
 		$('#message-box').html(message.text);
 	};
 	//when the start button is clicked, calls move function
-	$('#start').click(function(){
-		move('#message-box',5000);	
-
-	});
+	
 	// animation for the message-box div
 	function move (target, speed){
 		
-		$(target).css("left", "73%");
+		$(target).css("left", "83%");
 
 		$(target).animate(
 			{
