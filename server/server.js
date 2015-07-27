@@ -5,7 +5,8 @@ var http = require('http');
 var request = require("request");
 var crypto = require('crypto');
 app.use(bodyParser.json());
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
+var port = process.env.PORT||8000;
 //app.engine('html', require('ejs').renderFile); 
 app.use(express.static(__dirname + '/../client'));
 app.use(cookieParser());
@@ -54,6 +55,6 @@ app.get('/ehlo', function ( req, res){
 });
 
 //creating express server
-var server = app.listen(8000, function(){
+var server = app.listen(port, function(){
 	console.log('express server started...');
 });
