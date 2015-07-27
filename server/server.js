@@ -10,17 +10,17 @@ var cookieParser = require('cookie-parser')
 app.use(express.static(__dirname + '/../client'));
 app.use(cookieParser());
 
-// app.get('/', function(req, res) {
-// 	res.sendfile(__dirname+'./client/index.html');
-//   // do something here.
-// });
-// 
+
 app.get('/helo', function ( req, res){
+
 	var ip = req.headers['x-forwarded-for'] || 
      		req.connection.remoteAddress || 
      		req.socket.remoteAddress ||
      		req.connection.socket.remoteAddress;
 	console.log('trying to get ip',ip);
+	// the ip adress being passed is ipV6
+	// node has a crypto module to create hash digests for by passing in different algorithms 
+	// as the parameter
 	var hash  = crypto.createHash('sha256').update(ip).digest('hex');
 	
 	console.log(hash);
@@ -30,10 +30,12 @@ app.get('/helo', function ( req, res){
 
 app.get('/ehlo', function ( req, res){
 	console.log(req.cookies)
+
 	if(req.cookies.helo){
 		request('http://services.packetizer.com/motd/?f=json', function (error, response, body) {
   		if (!error && response.statusCode == 200) {
     		console.log('got cookeis', typeof body) // Print the google web page.
+    		//uncommet the following line to clear the cookies for each get request to /ehlo
     		//res.clearCookie('helo');
 	
     		res.send(JSON.parse(body));
@@ -51,7 +53,7 @@ app.get('/ehlo', function ( req, res){
 	//res.send('Hello World');
 });
 
-
+//creating express server
 var server = app.listen(8000, function(){
 	console.log('express server started...');
 });
